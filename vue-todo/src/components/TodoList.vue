@@ -2,7 +2,7 @@
   <div>
      <transition-group name="list" tag="ul">
       <li
-        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-for="(todoItem, index) in propsdata"
         v-bind:key="todoItem.item"
         class="shadow"
       >
@@ -31,14 +31,13 @@
 export default {
     props: ['propsdata'],
     methods: {
-        removeTodo(todoItem, index) {
-            this.$store.commit('removeOneItem', {todoItem, index});
+        removeTodo: function(todoItem, index) {
+            this.$emit('removeItem', todoItem, index);
             //console.log(todoItem);
         },
-        toggleComplete(todoItem, index) {
+        toggleComplete: function(todoItem, index) {
             // console.log(todoItem);
             this.$emit('toggleItem', todoItem, index)
-            this.$store.commit('toggleOneItem', {todoItem, index});
         }
     }
 }

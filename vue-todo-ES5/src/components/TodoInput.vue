@@ -27,17 +27,17 @@
 import Modal from './common/Modal.vue'
 
 export default {
-  data: function () {
+  data() {
     return {
       newTodoItem: "",
       showModal: false
     }
   },
   methods: {
-    addTodo: function () {
+    addTodo() {
       if (this.newTodoItem !== "") {
         // this.$eimt('이벤트 이름', 인자1, 인자2, ...);
-        this.$emit('addTodoItem', this.newTodoItem);
+        this.$store.commit('addOneItem', this.newTodoItem);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;
@@ -45,12 +45,12 @@ export default {
       //console.log(this.newTodoItem);
       //저장하는 로직
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoItem = "";
     }
   },
   components: {
-    Modal: Modal
+    Modal
   }
 };
 </script>
